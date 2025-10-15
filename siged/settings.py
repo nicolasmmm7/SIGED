@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -73,17 +77,17 @@ WSGI_APPLICATION = 'siged.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'defaultdb',
         'USER': 'avnadmin',
-        'PASSWORD': 'AVNS_euV9ARzmt47HsJm94ZN',  # tu contraseña
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # ← usa variable de entorno
         'HOST': 'pg-67749f1-ufps-fd2a.l.aivencloud.com',
         'PORT': '13485',
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
