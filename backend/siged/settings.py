@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'prendas', 
     'compra_venta',
     'apartado_credito',
-    'egreso_ingreso',
+    'egreso_ingreso'
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
