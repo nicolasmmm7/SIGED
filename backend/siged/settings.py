@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'apartado_credito',  
     'compra_venta',      
     'egreso_ingreso',    
-    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -100,6 +99,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
