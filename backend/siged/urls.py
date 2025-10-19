@@ -17,11 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from api_auth.views import login_view, logout_view
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+
+    path('api/auth/login/', login_view),
+    path('api/auth/logout/', logout_view),
+
     path('api/terceros/', include('terceros.urls')),
     path('api/dominios_comunes/', include('dominios_comunes.urls')),
     path('api/prendas/', include('prendas.urls')),
