@@ -20,7 +20,7 @@ function Login() {
     });
 
     if (response.ok) {
-      window.location.href = "/dashboard";
+      window.location.href = "/inventario";
     } else {
       const data = await response.json();
       setError(data.error || "Error al iniciar sesión");
