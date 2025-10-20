@@ -48,6 +48,7 @@ class Prenda(models.Model):
     )
     es_chatarra = models.BooleanField(default=False)
     es_recuperable = models.BooleanField(default=False)
+    archivado = models.BooleanField(default=False)
     gramos = models.DecimalField(
         max_digits=8, 
         decimal_places=2, 

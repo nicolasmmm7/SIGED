@@ -35,7 +35,7 @@ class PrendaSerializer(serializers.ModelSerializer):
             'id', 'nombre', 'tipo_prenda', 'tipo_prenda_nombre', 
             'tipo_oro', 'tipo_oro_nombre', 
             'es_chatarra', 'es_recuperable', 
-            'gramos', 'existencia'
+            'gramos', 'existencia', 'archivado'
         ]
 
     def validate(self, data):
