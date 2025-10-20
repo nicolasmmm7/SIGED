@@ -151,23 +151,23 @@ const nacional = resumenPorOro("NACIONAL");
     <div className="filtro-checkbox chatarra">
         <label>Chatarra</label>
         <input
-        type="checkbox"
-        checked={filtros.chatarra === "Sí"}
-        onChange={(e) =>
-            setFiltros({ ...filtros, chatarra: e.target.checked ? "Sí" : "Todos" })
-        }
-        />
+            type="checkbox"
+            checked={filtros.chatarra}
+            onChange={(e) =>
+              setFiltros({ ...filtros, chatarra: e.target.checked })
+            }
+          />
     </div>
 
     <div className="filtro-checkbox recuperable">
         <label>Recuperable</label>
         <input
-        type="checkbox"
-        checked={filtros.recuperable === "Sí"}
-        onChange={(e) =>
-            setFiltros({ ...filtros, recuperable: e.target.checked ? "Sí" : "Todos" })
-        }
-        />
+            type="checkbox"
+            checked={filtros.recuperable}
+            onChange={(e) =>
+              setFiltros({ ...filtros, recuperable: e.target.checked })
+            }
+          />
     </div>
     </div>
 
