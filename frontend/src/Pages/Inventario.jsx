@@ -73,7 +73,10 @@ const nacional = resumenPorOro("NACIONAL");
 
   return (
     <div className="inventario-container">
-      <h1 className="inventario-titulo">Inventario de Prendas 💎</h1>
+    <div className=" titulo-inventario">
+      <h1 className="text-3xl font-bold text-gray-800">Inventario</h1>
+    </div>
+      
 
       {/* 🔹 Panel de resumen mejorado */}
     <div className="resumen-panel">
