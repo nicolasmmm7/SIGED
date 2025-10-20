@@ -20,6 +20,8 @@ class Apartado(models.Model):
     fecha_limite = models.DateField()
 
     def __str__(self):
+        if self.cantidad_cuotas is None or self.cuotas_pendientes is None:
+            return "null"
         return f"Apartado - Cuotas: {self.cuotas_pendientes}/{self.cantidad_cuotas}"
 
     def clean(self):
@@ -64,7 +66,14 @@ class Credito(models.Model):
     fecha_limite = models.DateField()
 
     def __str__(self):
+        if (
+            self.cantidad_cuotas is None or 
+            self.cuotas_pendientes is None or 
+            self.interes is None
+        ):
+            return "null"
         return f"Crédito - Cuotas: {self.cuotas_pendientes}/{self.cantidad_cuotas} - Interés: {self.interes}%"
+
 
     def clean(self):
         if self.cuotas_pendientes > self.cantidad_cuotas:
