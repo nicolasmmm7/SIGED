@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AdminLayout from './layoutsAdmin/AdminLayout';
+import Login from "./Pages/Login";
 import Inicio from './pages/Inicio';
 import Clientes from './pages/Clientes';
 import Proveedores from './pages/Proveedores';
@@ -10,10 +12,14 @@ import Inventario from './pages/Inventario';
 import Caja from './pages/Caja';
 import './App.css';
 
+
+
 function App() {
   return (
     <Router>
       <Routes>
+
+    <Route path="/" element={<Login />} />
         <Route path="/" element={<Navigate to="/admin" replace />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Inicio />} />
@@ -23,7 +29,10 @@ function App() {
           <Route path="deudas/pagar" element={<DeudasPagar />} />
           <Route path="inventario" element={<Inventario />} />
           <Route path="caja" element={<Caja />} />
-        </Route>
+      
+
+        
+     
       </Routes>
     </Router>
   );

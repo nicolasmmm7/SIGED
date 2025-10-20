@@ -37,6 +37,7 @@ class TipoOro(models.Model):
         verbose_name_plural = "Tipos de Oro"
 
 class Prenda(models.Model):
+    nombre = models.CharField(max_length=100, unique=True, default="Sin nombre")
     tipo_prenda = models.ForeignKey(
         "TipoPrenda", 
         on_delete=models.RESTRICT
@@ -47,12 +48,12 @@ class Prenda(models.Model):
     )
     es_chatarra = models.BooleanField(default=False)
     es_recuperable = models.BooleanField(default=False)
+    archivado = models.BooleanField(default=False)
     gramos = models.DecimalField(
         max_digits=8, 
         decimal_places=2, 
         validators=[MinValueValidator(Decimal('0.01'))]
     )
-    descripcion = models.TextField(blank=True, null=True)
     existencia = models.PositiveIntegerField(default=1)
 
     def __str__(self):
