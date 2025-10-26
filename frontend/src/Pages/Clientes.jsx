@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import ClientCard from "../components/ClientCard";
-import ClientDetail from "../components/ClientDetail";
+import ClientCard from "../Components/ClientCard";
+import ClientDetail from "../Components/ClientDetail";
 // import ClientSearchBar from "../Components/ClientSearchBar"; // 🔹 Lo añadiremos más adelante
 
 const Clientes = () => {
