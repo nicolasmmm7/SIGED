@@ -7,7 +7,8 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 
-const ClientCard = ({ cliente, onEdit, onDelete, onSelect }) => {
+const ClientCard = ({ cliente, onEdit, onDelete, onSelect, isOpen }) => {
+
   return (
     <div
     className="w-full bg-white shadow-md rounded-xl p-4 mb-4 border border-gray-200 hover:shadow-lg transition cursor-pointer"
@@ -62,11 +63,16 @@ const ClientCard = ({ cliente, onEdit, onDelete, onSelect }) => {
           </button>
 
           <button
-          onClick={() => onSelect(cliente)}
-          className="text-gray-500 hover:text-purple-600 transition-transform transform hover:rotate-180"
-        >
-          <FaChevronDown className="w-6 h-6" />
-        </button>
+            onClick={(e) => {
+            e.stopPropagation();
+            onSelect(cliente.id);
+            }}
+            className="text-gray-500"
+          >
+            <FaChevronDown
+                className={`w-6 h-6 transform transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+            />
+          </button>
       </div>
     </div>
     </div>
