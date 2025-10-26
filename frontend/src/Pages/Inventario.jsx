@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/Inventario.css";
-import ModalEditar from "../Components/ModalEditar";
-import ModalArchivar from "../Components/ModalArchivar";
+import ModalEditar from "../components/ModalEditar";
+import ModalArchivar from "../components/ModalArchivar";
 
 export default function Inventario() {
   const [prendas, setPrendas] = useState([]);
