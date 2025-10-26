@@ -34,7 +34,7 @@ const ClientDetail = ({ cliente, resumen, historial }) => {
           <p className="text-gray-600 flex items-center gap-2 mt-2">
             <FaEnvelope className="text-purple-600" />{" "}
             <span className="font-medium">Correo:</span>{" "}
-            {cliente.correo || "No registrado"}
+            {cliente.email || "No registrado"}
           </p>
         </div>
 

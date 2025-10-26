@@ -33,7 +33,7 @@ const ClientCard = ({ cliente, onEdit, onDelete, onSelect, isOpen }) => {
                 <span className="flex items-center justify-center w-6 h-6 border border-black rounded-full">
                 <FaEnvelope className="text-black text-xs" />
                 </span>
-                {cliente?.correo || "Correo no registrado"}
+                {cliente?.email || "Correo no registrado"}
             </p>
             </div>
         </div>

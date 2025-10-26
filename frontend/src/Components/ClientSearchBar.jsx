@@ -6,20 +6,16 @@ const ClientSearchBar = ({ searchTerm, onSearch }) => {
   };
 
   return (
-    <div className="flex items-center justify-between bg-white shadow-md rounded-xl px-4 py-2 mb-4">
+    <div className="relative mb-6 w-full max-w-lg mx-auto">
+      <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
       <input
         type="text"
-        placeholder="Buscar cliente por nombre o cédula..."
+        placeholder="Buscar"
         value={searchTerm}
         onChange={handleChange}
-        className="flex-1 outline-none text-gray-700 placeholder-gray-400 bg-transparent px-2"
+        className="w-full pl-12 pr-4 py-3 rounded-2xl bg-gray-200 shadow text-gray-900 placeholder-gray-500 outline-none border-none transition focus:bg-gray-300"
+        style={{ fontWeight: 500, fontSize: "1rem" }}
       />
-      <button
-        onClick={() => onSearch(searchTerm)}
-        className="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-lg transition-colors"
-      >
-        <FaSearch />
-      </button>
     </div>
   );
 };
