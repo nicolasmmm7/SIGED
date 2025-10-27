@@ -13,6 +13,7 @@ const ClientDetail = ({ cliente, resumen, historial }) => {
   }
 
   return (
+    
     <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 w-full">
       {/* Encabezado */}
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
@@ -34,7 +35,7 @@ const ClientDetail = ({ cliente, resumen, historial }) => {
           <p className="text-gray-600 flex items-center gap-2 mt-2">
             <FaEnvelope className="text-purple-600" />{" "}
             <span className="font-medium">Correo:</span>{" "}
-            {cliente.correo || "No registrado"}
+            {cliente.email || "No registrado"}
           </p>
         </div>
 
