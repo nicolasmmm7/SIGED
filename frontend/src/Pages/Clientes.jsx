@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import ClientCard from "../Components/ClientCard";
 import ClientDetail from "../Components/ClientDetail";
+
 import ClientSearchBar from "../Components/ClientSearchBar";
 import EditClientModal from "../Components/EditClientModal";
+
 
 const Clientes = () => {
   const [clientes, setClientes] = useState([]);
