@@ -13,6 +13,7 @@ const ClientCard = ({ cliente, onEdit, onDelete, onSelect, isOpen }) => {
     <div
     className="w-full bg-white shadow-md rounded-xl p-4 mb-4 border border-gray-200 hover:shadow-lg transition cursor-pointer"
     onClick={() => onSelect(cliente.id)}
+    
     >
       <div className="flex justify-between items-center">
         {/* Información del cliente */}
@@ -43,7 +44,7 @@ const ClientCard = ({ cliente, onEdit, onDelete, onSelect, isOpen }) => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onEdit(cliente.id);
+              onEdit(cliente);
             }}
             className="text-blue-500 hover:text-blue-700 transition"
             title="Editar cliente"

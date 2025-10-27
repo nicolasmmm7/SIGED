@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ClientCard from "../Components/ClientCard";
 import ClientDetail from "../Components/ClientDetail";
 import ClientSearchBar from "../Components/ClientSearchBar";
+import EditClientModal from "../Components/EditClientModal";
 
 const Clientes = () => {
   const [clientes, setClientes] = useState([]);
@@ -10,6 +11,7 @@ const Clientes = () => {
   const [selectedClient, setSelectedClient] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalCliente, setModalCliente] = useState(null);
 
   // 🔹 Cargar lista general al montar
   useEffect(() => {
@@ -90,6 +92,22 @@ const Clientes = () => {
     }
   };
 
+   // 🔹 Abrir modal de edición
+  const handleEdit = (cliente) => {
+    setModalCliente(cliente);
+  };
+
+  // 🔹 Guardar cambios del cliente (tras editar)
+  const handleSave = (clienteActualizado) => {
+    setClientes((prevClientes) =>
+      prevClientes.map((c) => (c.id === clienteActualizado.id ? clienteActualizado : c))
+    );
+  };
+
+  const handleDelete = (id) => {
+    console.log("Eliminar cliente con ID:", id);
+  };
+
   if (loading) return <p className="text-center text-gray-500">Cargando clientes...</p>;
   if (error) return <p className="text-center text-red-500">Error: {error}</p>;
 
@@ -117,6 +135,8 @@ const Clientes = () => {
                 cliente={cliente}
                 isOpen={selectedClient?.id === cliente.id}
                 onSelect={() => handleSelect(cliente)}
+                onEdit={handleEdit}  
+                onDelete={handleDelete}
               />
 
               {/* Detalle del cliente debajo del card */}
@@ -135,6 +155,15 @@ const Clientes = () => {
             </div>
           ))}
         </div>
+      )}
+
+      {/* 🔹 Modal de edición */}
+      {modalCliente && (
+        <EditClientModal
+          cliente={modalCliente}
+          onClose={() => setModalCliente(null)}
+          onSave={handleSave}
+        />
       )}
     </div>
   );

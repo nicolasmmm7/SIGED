@@ -13,6 +13,7 @@ const ClientDetail = ({ cliente, resumen, historial }) => {
   }
 
   return (
+    
     <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 w-full">
       {/* Encabezado */}
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
