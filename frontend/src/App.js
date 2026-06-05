@@ -27,17 +27,17 @@ function App() {
 
         {/* 🔹 Rutas protegidas del panel admin */}
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Inicio />} />
+          <Route index element={null} />      {/*     <Route index element={<Inicio />}/>      */}
           <Route path="clientes" element={<Clientes />} />
           <Route path="proveedores" element={<Proveedores />} />
           <Route path="deudas/cobrar" element={<DeudasCobrar />} />
           <Route path="deudas/pagar" element={<DeudasPagar />} />
           <Route path="inventario" element={<Inventario />} />
-          <Route path="caja" element={<Caja />} />
+          <Route path="caja" element={<Caja />} />     
           <Route path="compras" element={<CompraForm />} />
-          <Route path="egresos" element={<Egresos />} />
-          <Route path="ingresos" element={<Ingresos />} />
-          <Route path="ventas" element={<Venta />} />
+          <Route path="egresos" element={<Egresos />} />       
+          <Route path="ingresos" element={<Ingresos />} />    
+           <Route path="ventas" element={<Venta />} />     
         </Route>
 
         {/* 🔹 Si la ruta no existe, redirigir al login */}

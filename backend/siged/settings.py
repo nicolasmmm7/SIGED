@@ -95,9 +95,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'defaultdb',
         'USER': 'avnadmin',
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # ← usa variable de entorno
-        'HOST': 'pg-67749f1-ufps-fd2a.l.aivencloud.com',
-        'PORT': '13485',
+        'PASSWORD': os.getenv('DB_PASSWORD'), 
+        'HOST': 'pg-16ee9e71-sanguinorincon-a4a0.d.aivencloud.com',
+        'PORT': '26577',
         'OPTIONS': {'sslmode': 'require'},
         'CONN_MAX_AGE': 60,
     }

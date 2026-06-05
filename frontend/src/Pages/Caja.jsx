@@ -956,7 +956,10 @@ const ModalDetalleMovimiento = ({ movimiento, onClose, esActual }) => {
                   </div>
                 </div>
 
-                {movimiento.observaciones && (
+                {/* Observaciones — ocultar si es crédito o apartado */}
+                {movimiento.observaciones && 
+                !movimiento.observaciones.includes("crédito") && 
+                !movimiento.observaciones.includes("apartado") && (
                   <div className="mt-4 pt-4 border-t border-gray-300">
                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Observaciones</p>
                     <p className="text-sm text-gray-700 italic">{movimiento.observaciones}</p>
@@ -1074,6 +1077,8 @@ const ModalDetalleMovimiento = ({ movimiento, onClose, esActual }) => {
               {/* Resumen de Totales */}
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border-2 border-blue-200">
                 <div className="space-y-3">
+
+                  {/* Total Gramos — solo si existe */}
                   {detalles?.total_gramos && (
                     <div className="flex justify-between items-center pb-3 border-b border-blue-200">
                       <span className="text-sm font-medium text-gray-700">Total Gramos:</span>
@@ -1083,21 +1088,34 @@ const ModalDetalleMovimiento = ({ movimiento, onClose, esActual }) => {
                     </div>
                   )}
 
-                  {detalles?.ganancia_total && parseFloat(detalles.ganancia_total) > 0 && (
+                  {/* Subtotal sin IVA — solo para ventas (no compras) */}
+                  {(movimiento.venta || movimiento.venta_info?.id) && detalles?.iva && parseFloat(detalles.iva) > 0 && (
+                  <div className="flex justify-between items-center pb-2 border-b border-blue-200">
+                    <span className="text-sm font-medium text-gray-700">Subtotal:</span>
+                    <span className="text-lg font-semibold text-gray-800">
+                      {formatearMonto(parseFloat(detalles.total || 0) - parseFloat(detalles.iva || 0))}
+                    </span>
+                  </div>
+                )}
+
+                  {/* IVA */}
+                  {(movimiento.venta || movimiento.venta_info?.id) && detalles?.iva && parseFloat(detalles.iva) > 0 && (
                     <div className="flex justify-between items-center pb-3 border-b border-blue-200">
-                      <span className="text-sm font-medium text-gray-700">Ganancia Total:</span>
-                      <span className="text-lg font-semibold text-green-600">
-                        {formatearMonto(detalles.ganancia_total)}
+                      <span className="text-sm font-medium text-gray-700">IVA (19%):</span>
+                      <span className="text-lg font-semibold text-blue-600">
+                        {formatearMonto(detalles.iva)}
                       </span>
                     </div>
                   )}
 
+                  {/* TOTAL */}
                   <div className="flex justify-between items-center pt-2">
                     <span className="text-lg font-bold text-gray-800">TOTAL:</span>
                     <span className="text-3xl font-bold text-blue-700">
-                      {formatearMonto(movimiento.monto || detalles?.total || 0)}
+                      ${formatearMonto(detalles?.total || 0)}
                     </span>
                   </div>
+
                 </div>
               </div>
 

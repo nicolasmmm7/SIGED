@@ -171,7 +171,7 @@ class VentaSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'cliente', 'cliente_nombre', 'credito', 'apartado',
             'metodo_pago', 'metodo_pago_nombre', 'fecha', 'descripcion', 
-            'total_gramos', 'ganancia_total', 'total', 'prendas'
+            'total_gramos', 'ganancia_total', 'iva', 'total', 'prendas'
         ]
         read_only_fields = ['fecha', 'total', 'total_gramos', 'ganancia_total']
 
@@ -194,9 +194,9 @@ class VentaCreateUpdateSerializer(serializers.ModelSerializer):
         model = Venta
         fields = [
             'id', 'cliente', 'credito', 'apartado',
-            'metodo_pago', 'fecha', 'descripcion', 'total', 'prendas'
+            'metodo_pago', 'fecha', 'descripcion', 'iva', 'total', 'prendas'
         ]
-        read_only_fields = ['fecha', 'total']
+        read_only_fields = ['fecha']
 
     def validate(self, data):
         if data.get('credito') and data.get('apartado'):
@@ -213,6 +213,7 @@ class VentaCreateUpdateSerializer(serializers.ModelSerializer):
     @transaction.atomic
     def create(self, validated_data):
         prendas_data = validated_data.pop('prendas', [])
+        total_frontend = validated_data.pop('total', None)
 
         # ✅ Crear venta SIN disparar el signal aún
         venta = Venta.objects.create(**validated_data)
@@ -221,9 +222,9 @@ class VentaCreateUpdateSerializer(serializers.ModelSerializer):
         for p_data in prendas_data:
             VentaPrenda.objects.create(venta=venta, **p_data)
 
-        # Calcular total una sola vez
-        venta.total = venta.calcular_total()
-        venta.save(update_fields=['total'])  # ✅ AQUÍ se dispara el signal CON el total correcto
+         # Usar el total del frontend si existe, si no recalcular
+        venta.total = Decimal(str(total_frontend)) if total_frontend else venta.calcular_total() + (venta.iva or Decimal('0.00'))
+        venta.save(update_fields=['total'])
 
         # ✅ DISPARAR SIGNAL MANUALMENTE AHORA QUE EL TOTAL ESTÁ LISTO
         from caja.signals import registrar_venta_en_caja
