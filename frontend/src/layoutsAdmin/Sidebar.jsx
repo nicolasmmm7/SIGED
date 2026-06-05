@@ -73,6 +73,9 @@ export default function Sidebar({
           </div>
 
           <nav className="flex-1 px-4 mt-2 space-y-1 text-white overflow-y-auto">
+
+
+  
           <NavLink
             to="/admin"
             end
@@ -163,6 +166,9 @@ export default function Sidebar({
             <FaBoxes /> {!collapsed && "Inventario"}
           </NavLink>
 
+
+
+ {/*
           <NavLink
             to="/admin/caja"
             className={({ isActive }) =>
@@ -173,8 +179,12 @@ export default function Sidebar({
               }`
             }
           >
+
+           
             <FaCashRegister /> {!collapsed && "Caja"}
           </NavLink>
+*/}
+
           <NavLink
             to="/admin/ventas"
             className={({ isActive }) =>
@@ -187,6 +197,8 @@ export default function Sidebar({
             <FaShoppingCart /> {!collapsed && "Ventas"}
           </NavLink>
 
+
+{/*
           <NavLink
             to="/admin/ingresos"
             className={({ isActive }) =>
@@ -198,7 +210,10 @@ export default function Sidebar({
           >
             <FaMoneyBillAlt /> {!collapsed && "Ingresos"}
           </NavLink>
+*/}
 
+
+          
           <NavLink
             to="/admin/compras"
             className={({ isActive }) =>
@@ -211,6 +226,8 @@ export default function Sidebar({
             <FaShoppingBag /> {!collapsed && "Compras"}
           </NavLink>
 
+
+{/*
           <NavLink
             to="/admin/egresos"
             className={({ isActive }) =>
@@ -222,6 +239,9 @@ export default function Sidebar({
           >
             <FaArrowCircleDown /> {!collapsed && "Egresos"}
           </NavLink>
+
+
+*/}
           </nav>
         </div>
       </aside>

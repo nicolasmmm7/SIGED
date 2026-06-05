@@ -33,6 +33,7 @@ class Compra(models.Model):
     )
 
 
+
     def __str__(self):
         return f"Compra - {self.proveedor.nombre} - ${self.total}"
 
@@ -97,6 +98,12 @@ class Venta(models.Model):
         decimal_places=2, 
         validators=[MinValueValidator(Decimal('0.01'))],
         editable=False,
+        default=Decimal('0.00')
+    )
+    # ← AGREGAR ESTO
+    iva = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
         default=Decimal('0.00')
     )
 

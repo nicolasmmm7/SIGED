@@ -215,14 +215,18 @@ const VentaForm = () => {
     totalGanancia += gananciaPorPrenda;
   });
 
+  const IVA_PORCENTAJE = 0.19;
   const base = totalVenta + totalGanancia;
+  const totalIva = parseFloat((base * IVA_PORCENTAJE).toFixed(2));
+  const baseConIva = base + totalIva;
   const interesDecimal = parseFloat(creditoData.interes || 0) / 100;
 
-  const totalConInteres = parseFloat((base * (1 + interesDecimal)).toFixed(2));
+  const totalConInteres = parseFloat((baseConIva * (1 + interesDecimal)).toFixed(2));
 
   setTotales({
     totalVenta: parseFloat(totalVenta.toFixed(2)),
     totalGanancia: parseFloat(totalGanancia.toFixed(2)),
+    totalIva,
     totalConInteres,
   });
 };
@@ -259,7 +263,7 @@ function quantityOrZero(q) {
            estado: 4,
            fecha_limite: creditoData.fecha_limite,
            descripcion: creditoData.descripcion,
-          monto_total: totales.totalConInteres,
+           monto_total: totales.totalConInteres,
            monto_pendiente: totales.totalConInteres,
          });
  
@@ -287,6 +291,7 @@ function quantityOrZero(q) {
         apartado: apartadoId,
 
         ganancia_total: totales.totalGanancia,
+        iva: totales.totalIva,          // ← AGREGAR
         total: totales.totalConInteres,
 
         prendas: venta.prendas.map(p => ({
@@ -647,14 +652,20 @@ function quantityOrZero(q) {
           <p className="total-value">{formatCurrency(totales.totalGanancia)}</p>
         </div>
 
+        
+        <div className="total-card orange">  
+          <p className="total-title">IVA (19%)</p>
+          <p className="total-value">{formatCurrency(totales.totalIva || 0)}</p>
+        </div>
+
         <div className="total-card blue">
-          <p className="total-title">Subtotal Final</p>
-          <p className="total-value">{formatCurrency(totales.totalVenta + totales.totalGanancia)}</p>
+          <p className="total-title">Total Final</p>
+          <p className="total-value">{formatCurrency(totales.totalVenta + totales.totalGanancia + (totales.totalIva || 0))}</p>
         </div>
 
         {venta.credito && (
           <div className="total-card yellow">
-            <p className="total-title">Total con interés</p>
+            <p className="total-title">Total con IVA e interés</p>
             <p className="total-value">
               {formatCurrency(totales.totalConInteres)}
             </p>
